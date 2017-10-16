@@ -1,43 +1,105 @@
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import { View } from 'react-native'
+import { Router, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import { ThemeProvider } from 'react-native-material-ui'
+import Sidebar from 'react-sidebar'
 
-export default class App extends React.Component {
+import Avatar from './scenes/Avatar'
+import Badge from './scenes/Badge'
+import Button from './scenes/Button'
+import Card from './scenes/Card'
+import Checkbox from './scenes/Checkbox'
+import Drawer from './scenes/Drawer'
+import Home from './Home'
+import uiTheme from './utils/Theme'
+
+//import AppDrawer from './AppDrawer'
+
+const history = createBrowserHistory()
+
+class App extends React.Component<{}, { open: boolean; docked: boolean }> {
+  constructor(props: any) {
+    super(props)
+
+    this.state = {
+      docked: false,
+      open: false,
+    }
+
+    this.toggleOpen = this.toggleOpen.bind(this)
+  }
+
+  toggleOpen = (ev: any) => {
+    this.setState({ open: !this.state.open })
+    if (ev) {
+      ev.preventDefault()
+    }
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up src/App.tsx to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Icon name="book" size={30} color="#900" />
-      </View>
+      <Router history={history}>
+        <ThemeProvider uiTheme={uiTheme}>
+          <Sidebar
+            sidebar={<Drawer />}
+            open={this.state.open}
+            docked={this.state.docked}
+          >
+            <View>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <Home
+                    isOpen={this.state.open}
+                    toogleOpen={this.toggleOpen.bind(this)}
+                    {...props}
+                  />
+                )}
+              />
+              <Route path="/avatar" component={Avatar} />
+              <Route path="/badge" component={Badge} />
+
+              <Route path="/button" component={Button} />
+              <Route path="/card" component={Card} />
+              <Route path="/checkbox" component={Checkbox} />
+            </View>
+          </Sidebar>
+        </ThemeProvider>
+      </Router>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+export default App
 
-/* import './App.css';
-const logo = require('./logo.svg');
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-} */
+/* 
+//import Home from './Home'
+//import ActionButton from './ActionButton/index'
+//import ActionButtonToolbar from './ActionButton/ActionButtonToolbar.react'
+//import ActionButtonSpeedDial from './ActionButton/ActionButtonSpeedDial.react'
+//import BottomNavigation from './scenes/BottomNavigation'
+//import Dialog from './scenes/Dialog'
+//import Drawer from './scenes/Drawer'
+//import IconToggle from './scenes/IconToggle'
+//import List from './scenes/List'
+//import RadioButton from './scenes/RadioButton'
+//import Toolbar from './scenes/Toolbars'
+//import Snackbar from './scenes/Snackbar'
+//import TextInput from './scenes/TextInput'
+
+              <Route path="/avatar" component={Avatar} />
+              <Route path="/badge" component={Badge} />
+              <Route path="/bottomNavigation" component={BottomNavigation} />
+              <Route path="/button" component={Button} />
+              <Route path="/card" component={Card} />
+              <Route path="/checkbox" component={Checkbox} />
+              <Route path="/dialog" component={Dialog} />
+              <Route path="/drawer" component={Drawer} />
+              <Route path="/iconToggle" component={IconToggle} />
+              <Route path="/list" component={List} />
+              <Route path="/radioButton" component={RadioButton} />
+              <Route path="/textInput" component={TextInput} />
+              <Route path="/toolbar" component={Toolbar} />
+              <Route path="/snackbar" component={Snackbar} />
+*/

@@ -7,19 +7,24 @@
   "scripts": {
     "start": "react-app-rewired  start --scripts-version react-scripts-ts",
     "build": "react-app-rewired  build --scripts-version react-scripts-ts",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "react-app-rewired  test --env=jsdom",
     "expo": "react-native-scripts start",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "jest": "node node_modules/jest/bin/jest.js --watch"
   },
   "dependencies": {
+    "@types/react-sidebar": "^2.2.2",
+    "babel-loader": "^7.1.2",
     "expo": "^21.0.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-native": "0.48.4",
+    "react-native-material-ui": "^1.13.0",
     "react-native-vector-icons": "^4.4.2",
     "react-native-web": "^0.1.8",
+    "react-router-dom": "^4.2.2",
+    "react-sidebar": "^2.3.2",
     "tslib": "^1.8.0"
   },
   "devDependencies": {
@@ -28,6 +33,7 @@
     "@types/react-dom": "^16.0.1",
     "@types/react-native": "^0.49.2",
     "@types/react-native-vector-icons": "^4.4.0",
+    "@types/react-router-dom": "^4.0.8",
     "@types/react-test-renderer": "^16.0.0",
     "babel-preset-react-native": "^4.0.0",
     "jest-expo": "21.0.2",
@@ -44,14 +50,10 @@
     "preset": "jest-expo-ts"
   },
   "babel": {
-    "presets": [
-      "babel-preset-expo"
-    ],
+    "presets": ["babel-preset-expo"],
     "env": {
       "development": {
-        "plugins": [
-          "transform-react-jsx-source"
-        ]
+        "plugins": ["transform-react-jsx-source"]
       }
     }
   }
