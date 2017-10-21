@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text } from 'react-native'
 import * as React from 'react'
-
-import { Avatar, Card, ListItem, Toolbar } from 'react-native-material-ui'
+import { RouteComponentProps } from 'react-router'
+import { Avatar, Card, ListItem } from 'react-native-material-ui'
 import Container from './Container'
 
 const styles = StyleSheet.create({
@@ -11,19 +11,10 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
-  history: History
-}
-
-class CardSpec extends React.Component<Props> {
+class CardSpec extends React.Component<RouteComponentProps<{}>> {
   render() {
     return (
       <Container>
-        <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={() => this.props.history.back()}
-          centerElement={'Cards'}
-        />
         <Card>
           <ListItem
             leftElement={<Avatar text="JM" />}

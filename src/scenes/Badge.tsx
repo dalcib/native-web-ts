@@ -1,37 +1,19 @@
 import { View, StyleSheet, Text } from 'react-native'
 import * as React from 'react'
-
+import { RouteComponentProps } from 'react-router'
 import {
   Badge,
   Button,
   Icon,
-  Toolbar,
   Subheader,
   Avatar,
 } from 'react-native-material-ui'
 import Container from './Container'
 
-const styles = StyleSheet.create({
-  rowContainer: {
-    flexDirection: 'row',
-  },
-  badgeContainer: {
-    paddingLeft: 24,
-  },
-})
-interface Props {
-  history: History
-}
-
-class BadgeSpec extends React.Component<Props> {
+class BadgeSpec extends React.Component<RouteComponentProps<{}>> {
   render() {
     return (
       <Container>
-        <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={() => this.props.history.back()}
-          centerElement={'Badge'}
-        />
         <Subheader text="Badge with icons" />
         <View style={styles.rowContainer}>
           <View style={styles.badgeContainer}>
@@ -150,5 +132,14 @@ class BadgeSpec extends React.Component<Props> {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    flexDirection: 'row',
+  },
+  badgeContainer: {
+    paddingLeft: 24,
+  },
+})
 
 export default BadgeSpec

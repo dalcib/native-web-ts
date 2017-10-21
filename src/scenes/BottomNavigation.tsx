@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import Container from './Container'
-
+import { RouteComponentProps } from 'react-router'
 import { Toolbar, BottomNavigation, Icon } from 'react-native-material-ui'
 
 const style = StyleSheet.create({
@@ -12,12 +12,11 @@ const style = StyleSheet.create({
 })
 
 class BottomNavigationSpec extends React.Component<
-  { history: History },
+  RouteComponentProps<void>,
   { active: string }
 > {
   constructor(props: any) {
     super(props)
-
     this.state = { active: 'today' }
   }
 
@@ -26,7 +25,7 @@ class BottomNavigationSpec extends React.Component<
       <Container style={style.container}>
         <Toolbar
           leftElement="arrow-back"
-          onLeftElementPress={() => this.props.history.back()}
+          onLeftElementPress={() => this.props.history.goBack()}
           centerElement={'Botton navigation'}
         />
         <View

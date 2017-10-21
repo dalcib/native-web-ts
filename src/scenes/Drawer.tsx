@@ -1,8 +1,10 @@
 import { View, StyleSheet } from 'react-native'
 import * as React from 'react'
-
+import { History } from 'history'
+import { inject, observer } from 'mobx-react'
 import { Avatar, Drawer, Toolbar } from 'react-native-material-ui'
 import Container from './Container'
+import { Store } from '../Store'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,15 +15,29 @@ const styles = StyleSheet.create({
   },
 })
 
-class DrawerSpec extends React.Component /* <{ history: History }> */ {
+interface Props {
+  history: History
+}
+interface InjectedProps extends Props {
+  store: Store
+}
+
+@inject('store')
+@observer
+class DrawerSpec extends React.Component<Props> {
+  get stores() {
+    return this.props as InjectedProps
+  }
   render() {
+    const { store } = this.stores
     return (
       <Container>
         <Toolbar
           leftElement="arrow-back"
           onLeftElementPress={() => {
-            /*             if (this.props.history.length > 0) {
-              this.props.history.back()
+            store.setSidebarOpen(false)
+            /* if (history && history.length > 0) {
+              history.goBack()
             } */
           }}
           centerElement={'Drawer'}

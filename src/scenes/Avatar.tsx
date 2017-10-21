@@ -1,28 +1,13 @@
 import { View, StyleSheet } from 'react-native'
 import * as React from 'react'
-
-import { Avatar, Subheader, Toolbar } from 'react-native-material-ui'
+import { RouteComponentProps } from 'react-router'
+import { Avatar, Subheader } from 'react-native-material-ui'
 import Container from './Container'
 
-const styles = StyleSheet.create({
-  avatarContainer: {
-    paddingLeft: 16,
-  },
-})
-
-interface Props {
-  history: History
-}
-
-class AvatarSpec extends React.Component<Props> {
+class AvatarSpec extends React.Component<RouteComponentProps<{}>> {
   render() {
     return (
       <Container>
-        <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={() => this.props.history.back()}
-          centerElement={'Avatars'}
-        />
         <Subheader text="Avatars with text" />
         <View style={styles.avatarContainer}>
           <Avatar text="C" />
@@ -35,5 +20,11 @@ class AvatarSpec extends React.Component<Props> {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  avatarContainer: {
+    paddingLeft: 16,
+  },
+})
 
 export default AvatarSpec

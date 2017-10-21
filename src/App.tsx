@@ -1,72 +1,40 @@
 import * as React from 'react'
 import { View } from 'react-native'
-import { Router, Route } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
 import { ThemeProvider } from 'react-native-material-ui'
-import Sidebar from 'react-sidebar'
+import AppToolbar from './AppToolbar'
+import store from './Store'
+import { Provider, observer } from 'mobx-react'
 
 import Avatar from './scenes/Avatar'
 import Badge from './scenes/Badge'
 import Button from './scenes/Button'
-import Card from './scenes/Card'
+import Cardd from './scenes/Card'
 import Checkbox from './scenes/Checkbox'
-import Drawer from './scenes/Drawer'
 import Home from './Home'
+import BottonBar from './BottonBar'
 import uiTheme from './utils/Theme'
+import { AppRouter, Route, history } from './AppRouter'
 
-//import AppDrawer from './AppDrawer'
-
-const history = createBrowserHistory()
-
-class App extends React.Component<{}, { open: boolean; docked: boolean }> {
-  constructor(props: any) {
-    super(props)
-
-    this.state = {
-      docked: false,
-      open: false,
-    }
-
-    this.toggleOpen = this.toggleOpen.bind(this)
-  }
-
-  toggleOpen = (ev: any) => {
-    this.setState({ open: !this.state.open })
-    if (ev) {
-      ev.preventDefault()
-    }
-  }
+@observer
+class App extends React.Component {
   render() {
     return (
-      <Router history={history}>
+      <Provider store={store}>
         <ThemeProvider uiTheme={uiTheme}>
-          <Sidebar
-            sidebar={<Drawer />}
-            open={this.state.open}
-            docked={this.state.docked}
-          >
+          <AppRouter>
             <View>
-              <Route
-                exact
-                path="/"
-                render={props => (
-                  <Home
-                    isOpen={this.state.open}
-                    toogleOpen={this.toggleOpen.bind(this)}
-                    {...props}
-                  />
-                )}
-              />
+              <AppToolbar history={history} />
+              <Route exact path="/" component={Home} />
               <Route path="/avatar" component={Avatar} />
               <Route path="/badge" component={Badge} />
-
               <Route path="/button" component={Button} />
-              <Route path="/card" component={Card} />
+              <Route path="/card" component={Cardd} />
               <Route path="/checkbox" component={Checkbox} />
+              <BottonBar />
             </View>
-          </Sidebar>
+          </AppRouter>
         </ThemeProvider>
-      </Router>
+      </Provider>
     )
   }
 }
@@ -88,18 +56,18 @@ export default App
 //import Snackbar from './scenes/Snackbar'
 //import TextInput from './scenes/TextInput'
 
-              <Route path="/avatar" component={Avatar} />
-              <Route path="/badge" component={Badge} />
-              <Route path="/bottomNavigation" component={BottomNavigation} />
-              <Route path="/button" component={Button} />
-              <Route path="/card" component={Card} />
-              <Route path="/checkbox" component={Checkbox} />
-              <Route path="/dialog" component={Dialog} />
-              <Route path="/drawer" component={Drawer} />
-              <Route path="/iconToggle" component={IconToggle} />
-              <Route path="/list" component={List} />
-              <Route path="/radioButton" component={RadioButton} />
-              <Route path="/textInput" component={TextInput} />
-              <Route path="/toolbar" component={Toolbar} />
-              <Route path="/snackbar" component={Snackbar} />
+<Route path="/avatar" component={Avatar} />
+<Route path="/badge" component={Badge} />
+<Route path="/bottomNavigation" component={BottomNavigation} />
+<Route path="/button" component={Button} />
+<Route path="/card" component={Card} />
+<Route path="/checkbox" component={Checkbox} />
+<Route path="/dialog" component={Dialog} />
+<Route path="/drawer" component={Drawer} />
+<Route path="/iconToggle" component={IconToggle} />
+<Route path="/list" component={List} />
+<Route path="/radioButton" component={RadioButton} />
+<Route path="/textInput" component={TextInput} />
+<Route path="/toolbar" component={Toolbar} />
+<Route path="/snackbar" component={Snackbar} />
 */

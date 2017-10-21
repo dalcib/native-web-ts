@@ -8,6 +8,7 @@
     "no-parameter-properties": true,
     "jsx-no-lambda": false,
     "no-empty": false,
+    "no-empty-interface": false,
     "jsx-boolean-value": false,
 
     "deprecation": true,

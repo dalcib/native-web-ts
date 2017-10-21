@@ -1,7 +1,8 @@
 import { View, StyleSheet } from 'react-native'
 import * as React from 'react'
-
-import { Button, Subheader, Toolbar } from 'react-native-material-ui'
+import { RouteComponentProps, withRouter } from 'react-router'
+import { Button, Subheader } from 'react-native-material-ui'
+import { observer } from 'mobx-react'
 import Container from './Container'
 
 const styles = StyleSheet.create({
@@ -15,19 +16,12 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
-  history: History
-}
-
-class ButtonPage extends React.Component<Props> {
+@withRouter
+@observer
+class ButtonPage extends React.Component<RouteComponentProps<{}>> {
   render() {
     return (
       <Container>
-        <Toolbar
-          leftElement="arrow-back"
-          onLeftElementPress={() => this.props.history.back()}
-          centerElement={'Buttons'}
-        />
         <Subheader text="Flat buttons" />
         <View style={styles.rowContainer}>
           <View style={styles.button}>
