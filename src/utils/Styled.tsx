@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createElement } from 'react-native'
+import * as PropTypes from 'prop-types'
 
 /**
  * styled API
@@ -13,7 +14,7 @@ const styled = (Component: React.ComponentType, styler: any) => {
 
   class Styled extends React.Component<Props> {
     static contextTypes = {
-      uiTheme: React.PropTypes.func,
+      uiTheme: PropTypes.func,
     }
 
     render() {

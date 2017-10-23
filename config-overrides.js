@@ -1,5 +1,6 @@
 const path = require('path')
 const localPath = 'C:\\Users\\dalci\\playground\\native-web-ts'
+const jestScriptPath = '\\node_modules\\react-scripts-ts\\config\\jest\\'
 
 module.exports = {
   webpack: function(config, env) {
@@ -37,16 +38,10 @@ module.exports = {
       testEnvironment: 'node',
       testURL: 'http://localhost',
       transform: {
-        '^.+.css$':
-          localPath +
-          '\\node_modules\\react-scripts-ts\\config\\jest\\cssTransform.js',
-        '^.+.tsx?$':
-          localPath +
-          '\\node_modules\\react-scripts-ts\\config\\jest\\typescriptTransform.js',
+        '^.+.css$': localPath + jestScriptPath + 'cssTransform.js',
+        '^.+.tsx?$': localPath + jestScriptPath + 'typescriptTransform.js',
         '^(?!.*.(js|jsx|css|json)$)':
-          localPath +
-          '\\node_modules\\react-scripts-ts\\config\\jest\\fileTransform.js',
-        //'node_modules/react-native-material-ui':
+          localPath + jestScriptPath + 'fileTransform.js',
         '[/\\\\]node_modules[/\\\\]react-native-material-ui.+\\.(js|jsx)$':
           'babel-jest',
       },
@@ -78,12 +73,7 @@ module.exports = {
     }
     return config
   },
-  // configFunction is the original react-scripts function that creates the
-  // Webpack Dev Server config based on the settings for proxy/allowedHost.
-  // react-scripts injects this into your function (so you can use it to
-  // create the standard config to start from), and needs to receive back a
-  // function that takes the same arguments as the original react-scripts
-  // function so that it can be used as a replacement for the original one.
+
   devServer: function(configFunction) {
     return function(proxy, allowedHost) {
       const config = configFunction(proxy, allowedHost)
