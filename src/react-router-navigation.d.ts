@@ -1,17 +1,8 @@
 declare module 'react-router-navigation' {
   //BottonNavigation
   import * as React from 'react'
-  import {
-    Dimensions,
-    View,
-    StyleProp,
-    ViewStyle,
-    TextStyle,
-  } from 'react-native'
-  import {
-    NavigationTransitionProps,
-    NavigationTransitionSpec,
-  } from 'react-navigation'
+  import { Dimensions, View, StyleProp, ViewStyle, TextStyle } from 'react-native'
+  import { NavigationTransitionProps, NavigationTransitionSpec } from 'react-navigation'
   import { TabViewPagerPanProps } from 'react-native-tab-view'
   import { ComponentClass, ReactElement, PureComponent, Component } from 'react'
   import { RouteComponentProps } from 'react-router'
@@ -94,9 +85,7 @@ declare module 'react-router-navigation' {
 
   type TabBarProps = {
     hideTabBar?: boolean
-    renderTabBar?: (
-      props: TabSubViewProps
-    ) => ValidReactRenderResult | undefined
+    renderTabBar?: (props: TabSubViewProps) => ValidReactRenderResult | undefined
     tabBarStyle?: StyleSheet
     tabStyle?: StyleSheet
     label?: string
@@ -105,9 +94,7 @@ declare module 'react-router-navigation' {
     tabTintColor?: string
     tabActiveTintColor?: string
     // <BottomNavigation /> only:
-    renderTabIcon?: (
-      props: TabSubViewProps
-    ) => ValidReactRenderResult | undefined
+    renderTabIcon?: (props: TabSubViewProps) => ValidReactRenderResult | undefined
     // <Tabs /> only:
     tabBarPosition?: 'top' | 'bottom'
     tabBarIndicatorStyle?: StyleSheet
@@ -156,10 +143,7 @@ declare module 'react-router-navigation' {
 
     renderPager: (sceneProps: TabViewPagerPanProps) => React.ReactNode
 
-    renderNavigationBar: (
-      sceneProps: TabSubViewProps,
-      props: TabBarProps
-    ) => React.ReactNode
+    renderNavigationBar: (sceneProps: TabSubViewProps, props: TabBarProps) => React.ReactNode
 
     renderScene: (sceneProps: TabSubViewProps) => React.ReactNode
 
@@ -202,17 +186,11 @@ declare module 'react-router-navigation' {
   export class NavBar extends Component<PropsNavBar, void> {
     props: PropsNavBar
 
-    renderLeftComponent: (
-      sceneProps: CardSubViewProps
-    ) => ReactElement<any> | null
+    renderLeftComponent: (sceneProps: CardSubViewProps) => ReactElement<any> | null
 
-    renderTitleComponent: (
-      sceneProps: CardSubViewProps
-    ) => ReactElement<any> | null
+    renderTitleComponent: (sceneProps: CardSubViewProps) => ReactElement<any> | null
 
-    renderRightComponent: (
-      sceneProps: CardSubViewProps
-    ) => ReactElement<any> | null
+    renderRightComponent: (sceneProps: CardSubViewProps) => ReactElement<any> | null
   }
 
   //Navigation
@@ -228,9 +206,7 @@ declare module 'react-router-navigation' {
       props: CardSubViewProps
     ) => ReactElement<any> | undefined
 
-    renderSceneComponent: (
-      sceneProps: CardSubViewProps
-    ) => ComponentClass<any> | undefined
+    renderSceneComponent: (sceneProps: CardSubViewProps) => ComponentClass<any> | undefined
   }
 
   //Tab
@@ -291,10 +267,7 @@ declare module 'react-router-navigation' {
 
     renderFooter: (sceneProps: TabSubViewProps) => ReactElement<any> | null
 
-    renderTabBar: (
-      sceneProps: TabSubViewProps,
-      props: TabSubViewProps
-    ) => ReactElement<any> | null
+    renderTabBar: (sceneProps: TabSubViewProps, props: TabSubViewProps) => ReactElement<any> | null
 
     renderScene: (sceneProps: TabSubViewProps) => ReactElement<any> | null
   }

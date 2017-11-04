@@ -11,18 +11,31 @@
     "expo": "react-native-scripts start",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "jest": "node node_modules/jest/bin/jest.js --watch"
+    "jest": "node node_modules/jest/bin/jest.js --watch",
+    "prepare": "patch-package"
   },
   "dependencies": {
+    "@types/jest": "^21.1.2",
+    "@types/node": "^8.0.47",
     "@types/prop-types": "^15.5.2",
-    "expo": "^22.0.0",
+    "@types/react": "^16.0.16",
+    "@types/react-dom": "^16.0.2",
+    "@types/react-native": "^0.49.2",
+    "@types/react-native-tab-view": "^0.0.1",
+    "@types/react-native-vector-icons": "^4.4.1",
+    "@types/react-navigation": "^1.0.21",
+    "@types/react-router-dom": "^4.0.8",
+    "@types/react-router-native": "^4.0.1",
+    "@types/react-sidebar": "^2.2.2",
+    "@types/react-test-renderer": "^16.0.0",
+    "expo": "^22.0.2",
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.3",
     "mobx-react-devtools": "^4.2.15",
     "mobx-react-router": "^4.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-native": "0.49.3",
+    "react-native": "0.49.5",
     "react-native-material-ui": "^1.14.0",
     "react-native-vector-icons": "^4.4.2",
     "react-native-web": "^0.1.12",
@@ -34,24 +47,14 @@
     "tslib": "^1.8.0"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.2",
-    "@types/react": "^16.0.16",
-    "@types/react-dom": "^16.0.2",
-    "@types/react-native": "^0.49.2",
-    "@types/react-native-tab-view": "^0.0.0",
-    "@types/react-native-vector-icons": "^4.4.1",
-    "@types/react-navigation": "^1.0.21",
-    "@types/react-router-dom": "^4.0.8",
-    "@types/react-router-native": "^4.0.1",
-    "@types/react-sidebar": "^2.2.2",
-    "@types/react-test-renderer": "^16.0.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "^4.0.0",
     "jest-expo": "22.0.0",
     "jest-expo-ts": "22.0.0",
+    "patch-package": "^3.6.0",
     "prop-types": "15.6.0",
     "react-app-rewired": "^1.3.3",
-    "react-native-scripts": "1.5.0",
+    "react-native-scripts": "1.7.0",
     "react-native-typescript-transformer": "^1.1.4",
     "react-scripts-ts": "2.8.0",
     "react-test-renderer": "^16.0.0",
@@ -62,14 +65,10 @@
     "preset": "jest-expo-ts"
   },
   "babel": {
-    "presets": [
-      "babel-preset-expo"
-    ],
+    "presets": ["babel-preset-expo"],
     "env": {
       "development": {
-        "plugins": [
-          "transform-react-jsx-source"
-        ]
+        "plugins": ["transform-react-jsx-source"]
       }
     }
   }

@@ -30,10 +30,10 @@ export class AppRouter extends React.Component {
             drawerPosition={DrawerLayoutAndroid.positions.Left}
             renderNavigationView={() => <Drawer history={history} />}
             ref={drawer => (androidDrawer = drawer)}
-          >
-            {this.props.children}
-          </DrawerLayoutAndroid>
-          <View />
+          />
+          <View>
+            {this.props.children /* && React.Children.map(this.props.children, (child => child)) */}
+          </View>
         </Navigation>
       </NativeRouter>
     )

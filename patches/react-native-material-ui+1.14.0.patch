@@ -1,0 +1,27 @@
+patch-package
+--- a/node_modules/react-native-material-ui/src/Drawer/HeaderAccount.react.js
++++ b/node_modules/react-native-material-ui/src/Drawer/HeaderAccount.react.js
+@@ -5,6 +5,11 @@ import { View, TouchableWithoutFeedback } from 'react-native';
+ /* eslint-enable import/no-unresolved, import/extensions */
+ import ListItem from '../ListItem';
+ 
++let countAvatars = 1; // eslint-disable-line no-unused-vars
++ function defineKey() {
++     countAvatars += 1;
++ }
++
+ const propTypes = {
+     avatar: PropTypes.element,
+     accounts: PropTypes.arrayOf(PropTypes.shape({
+@@ -90,7 +95,10 @@ class HeaderAcount extends PureComponent {
+                                 // add more soficticated slice when there will be lots of accounts
+                                 accounts &&
+                                 accounts.slice(0, 3).map(account => (
+-                                    <TouchableWithoutFeedback onPress={account.onPress}>
++                                                    <TouchableWithoutFeedback
++                                         onPress={account.onPress}
++                                         key={defineKey()}
++                                     >
+                                         <View style={[styles.inactiveAvatarContainer]}>
+                                             {account.avatar}
+                                         </View>

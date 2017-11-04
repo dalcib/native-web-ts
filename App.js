@@ -1,10 +1,13 @@
 import App from './src/App'
-import react from 'react'
+import React from 'react'
 import { Font } from 'expo'
 
-export default class extends react.Component {
-  async componentWillMount() {
-    Font.loadAsync({
+export default class extends React.Component {
+  state = {
+    isReady: false,
+  }
+  async /* componentWillMount */ loadFonts() {
+    await Font.loadAsync({
       'Roboto-Black': require('./public/fonts/Roboto-Black.ttf'),
       'Roboto-BlackItalic': require('./public/fonts/Roboto-BlackItalic.ttf'),
       'Roboto-Bold': require('./public/fonts/Roboto-Bold.ttf'),
@@ -22,6 +25,18 @@ export default class extends react.Component {
     })
   }
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this.loadFonts}
+          onFinish={() =>
+            this.setState({
+              isReady: true,
+            })}
+          onError={console.warn}
+        />
+      )
+    }
     return <App />
   }
 }
